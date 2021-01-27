@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Entendendo jQuery</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+    <script src="js/jquery.js"></script>
+</head>
+
+<body class="conteudo exercicio">
+    <h1>Entendendo jQuery</h1>
+    <div>1</div>
+    <div>2</div>
+
+    <script>
+        /*The Dollar sign $ is a reference to jQuery */
+        $('div').hide(2000) //5000 is the time it will take for the element being hidden
+            .show(1000)
+            .fadeOut(500);
+        console.log($('div').get(1));
+        console.log($.isEmptyObject({nome: null})); //Utilitary function
+        console.log(jQuery.inArray(3, [1,2,3])); //Returns the index of the number if present, or -1 if not present
+
+        $.fn.fundoVerde = function(){
+            this.css('background-color', 'green');
+            return this; //The return this returns the object so it can be chained to another function
+        }
+
+        $('body').fundoVerde().fadeOut(1000);
+        
+    </script>
+</body>

@@ -1,0 +1,6 @@
+@import "~bootstrap/scss/bootstrap"; //The ~ sign is a reference for the node_modules directory
+
+$fa-font-path: "~font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome";
+
+@import "custom";

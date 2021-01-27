@@ -1,0 +1,12 @@
+const arr = [1];
+arr[2] = 'oi';
+console.log(arr[1]);
+arr.shift();
+console.log(arr);
+arr.pop();
+console.log(arr);
+arr.push('gay');
+arr.unshift('homo');
+console.log(arr);
+delete arr[0];
+console.log(arr);
