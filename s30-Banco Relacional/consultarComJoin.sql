@@ -15,7 +15,7 @@ SELECT c.nome AS Nome Cidade,
 FROM cidades c, estados 
 WHERE c.estado_id = e.id;
 
-/*Ladies and Gentlenmen, I present you the Inner Join!*/
+/*Ladies and Gentlenmen, I present you the Inner Join!:*/
 
 SELECT c.nome AS Cidade,
     e.nome AS Estado,

@@ -3,6 +3,6 @@ CREATE TABLE IF NOT EXISTS prefeitos(
     nome VARCHAR(255) NOT NULL,
     cidade_id INT UNSIGNED,
     PRIMARY KEY (id),
-    UNIQUE KEY (cidade_id), /*This attributes establishes the relation one to one */
+    UNIQUE KEY (cidade_id), /*This attributes establishes the relation one to one  */
     FOREIGN KEY (cidade_id) REFERENCES cidades(id)
 );
