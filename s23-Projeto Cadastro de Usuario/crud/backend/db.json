@@ -1,0 +1,11 @@
+{
+    "users":[{
+        "id": 1,
+        "name": "Mano Dibas",
+        "email": "manoDibas@quebrada.com"
+    },{
+        "id": 2,
+        "name": "Trutovisky",
+        "email": "trutonicusfodonicus@nois.com"
+    }]
+}
