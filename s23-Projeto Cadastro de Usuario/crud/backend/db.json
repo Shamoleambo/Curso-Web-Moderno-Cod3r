@@ -1,11 +1,24 @@
 {
-    "users":[{
-        "id": 1,
-        "name": "Mano Dibas",
-        "email": "manoDibas@quebrada.com"
-    },{
-        "id": 2,
-        "name": "Trutovisky",
-        "email": "trutonicusfodonicus@nois.com"
-    }]
+  "users": [
+    {
+      "id": 1,
+      "name": "Mano Dibas",
+      "email": "manoDibas@quebrada.com"
+    },
+    {
+      "id": 2,
+      "name": "Trutovisky",
+      "email": "trutonicusfodonicus@nois.com"
+    },
+    {
+      "name": "Mano Teste",
+      "email": "mano@teste.com",
+      "id": 3
+    },
+    {
+      "name": "Truta",
+      "email": "issoédemais@nois.com",
+      "id": 4
+    }
+  ]
 }
