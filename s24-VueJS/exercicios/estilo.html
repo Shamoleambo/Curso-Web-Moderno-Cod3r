@@ -6,15 +6,35 @@
     <link rel="stylesheet" href="/css/estilo.css">
     <script src="/js/vue.min.js"></script>
     <style>
-        .vermelho {
+        .classe-vermelho {
             background-color: red;
         }
     </style>
 </head>
 <body class="exercicio">
 
+    <!--If the class has an hífen it has to be envoloped by single quotes or double quotes-->
+    <div id="app" @click='aplicarCor = !aplicarCor'
+        :class="{'classe-vermelho': aplicarCor}">
+        Teste
+    </div>
+
     <script>
-        // ...
+        new Vue({
+            el: '#app',
+            data:{
+                aplicarCor: false
+            }
+            // ,
+            // methods:{
+            //     trocarCor(){
+            //         const app = document.querySelector('#app');
+            //         this.aplicarCor = !this.aplicarCor;
+            //         console.log(this.aplicarCor);
+            //         app.classList.toggle('classe-vermelho');
+            //     }
+            //}
+        });
     </script>
 </body>
 </html>
