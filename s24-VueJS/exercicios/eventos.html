@@ -8,8 +8,44 @@
 </head>
 <body class="exercicio">
 
+    <div id="app">
+        <p>{{contador}}</p>
+        <p>
+            <!--v-on is the directive to associate an event with Vue-->
+            <button v-on:click='add'>+1</button>
+            <button @click='contador -= 2'>-2</button>
+        </p>
+        <p @mousemove='atualizarPosicao'>
+            Coordenadas: {{x}}, {{y}}
+
+            <!--Instead of creating a function to stop the event you can stop it by referrencing .stop inside the area with the event added-->
+            <span @mousemove.stop>Aqui Não</span>
+        </p>
+        <!--Calls the function alerta only on the keyup event, but more specifically the keyup.enter-->
+        <input type="text" @keyup.enter='alerta'>
+    </div>
+
     <script>
-        // ...
+        new Vue({
+            el: "#app",
+            data:{
+                contador: 0,
+                x: 0,
+                y: 0
+            },
+            methods:{
+                add(){
+                    this.contador++;
+                },
+                atualizarPosicao(e){
+                    this.x = e.clientX;
+                    this.y = e.clientY;
+                },
+                alerta(){
+                    alert("Enter!");
+                }
+            }
+        })
     </script>
 </body>
 </html>
