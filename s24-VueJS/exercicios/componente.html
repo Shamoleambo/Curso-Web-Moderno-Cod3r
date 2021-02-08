@@ -8,8 +8,24 @@
 </head>
 <body class="exercicio">
 
+    <div id="app">
+        <saudacao nome="Mano"></saudacao>
+        <saudacao nome="Truta"></saudacao>
+        <saudacao nome="Tiu"></saudacao>
+        <saudacao nome="Fi"></saudacao>
+    </div>
+
     <script>
-        // ...
+        Vue.component('saudacao', {
+            props: ['nome'],
+            template: `
+                <div>Bom dia {{nome}}!</div>
+            `
+        });
+
+        new Vue({
+            el: '#app'
+        })
     </script>
 </body>
 </html>
