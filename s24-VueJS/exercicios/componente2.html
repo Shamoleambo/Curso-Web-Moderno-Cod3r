@@ -9,11 +9,40 @@
 <body class="exercicio">
 
     <div id="app">
-        
+        <contador></contador>
+        <contador></contador>
+        <contador></contador>
     </div>
 
     <script>
-     
+        Vue.component('contador', {
+            //Components must return data as a function!
+            data:function(){
+                return {
+                    contador:0
+                }
+            },
+            methods:{
+                addOne(){
+                    this.contador++;
+                },
+                removeTwo(){
+                    this.contador -= 2;
+                }
+            },
+            template:`
+                <p>
+                    {{contador}}
+                    <br />
+                    <button @click='addOne'>+1</button>
+                    <button @click='removeTwo'>-2</button>
+                </p>
+            `
+        });
+
+        new Vue({
+            el:'#app'
+        });
     </script>
 </body>
 </html>
