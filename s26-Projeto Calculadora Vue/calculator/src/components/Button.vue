@@ -1,6 +1,7 @@
 <template>
     <!--Below: if double is set to true, applies the class double, is triple is set to true, applies the class triple...-->
-    <button class="button" 
+    <button class="button"
+        @click="$emit('onClick', label)"
         :class="{double, triple, operation}">
         {{label}}
     </button>
