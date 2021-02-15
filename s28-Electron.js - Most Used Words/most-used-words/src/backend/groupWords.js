@@ -15,6 +15,7 @@ module.exports = words =>{
                 .map(key => ({name: key, amount: groupedWords[key]}))
                 .sort((w1, w2) => w2.amount - w1.amount);
 
+            resolve(groupedWordsArray);
         }catch(e){
             reject(e);
         }
