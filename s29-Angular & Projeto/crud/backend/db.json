@@ -29,6 +29,11 @@
       "name": "emprego",
       "price": "2700",
       "id": 6
+    },
+    {
+      "name": "fandangos",
+      "price": "12.00",
+      "id": 7
     }
   ]
 }
