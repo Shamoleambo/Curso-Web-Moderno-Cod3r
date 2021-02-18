@@ -33,6 +33,7 @@ export class ProductService {
     return this.http.get<Product[]>(this.baseUrl);
   }
 
+  //This method will fill the form for the next method(update) update the product with the altered data
   readById(id: string): Observable<Product>{
     const url = `${this.baseUrl}/${id}`;
     return this.http.get<Product>(url);
