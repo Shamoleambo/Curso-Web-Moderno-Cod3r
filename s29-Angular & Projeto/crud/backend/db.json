@@ -1,21 +1,6 @@
 {
   "products": [
     {
-      "id": 1,
-      "name": "Caneta FUCKYEAH!!!!",
-      "price": "60.55"
-    },
-    {
-      "id": 2,
-      "name": "Macbook Mac Pro",
-      "price": 12000
-    },
-    {
-      "id": 3,
-      "name": "Samsung S20+",
-      "price": 5000
-    },
-    {
       "name": "mano",
       "price": "1234",
       "id": 4
@@ -34,6 +19,11 @@
       "name": "fandangos",
       "price": "12.00",
       "id": 7
+    },
+    {
+      "name": "truta",
+      "price": "12",
+      "id": 8
     }
   ]
 }
