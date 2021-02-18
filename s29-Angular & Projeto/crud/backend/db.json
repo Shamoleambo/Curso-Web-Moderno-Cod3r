@@ -14,6 +14,21 @@
       "id": 3,
       "name": "Samsung S20+",
       "price": 5000
+    },
+    {
+      "name": "mano",
+      "price": "1234",
+      "id": 4
+    },
+    {
+      "name": "dahora",
+      "price": "5678765",
+      "id": 5
+    },
+    {
+      "name": "emprego",
+      "price": "2700",
+      "id": 6
     }
   ]
 }
