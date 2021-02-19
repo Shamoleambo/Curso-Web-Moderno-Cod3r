@@ -1,0 +1,31 @@
+Estado
+nome = São Paulo; sigla = SP; regiao = Sudeste
+    Cidades
+    nome = Campinas; area = 795.7; prefeito = Fulano de Tal; populacao = 1081000
+    nome = Guarulhos; populacao = 1325000
+    nome = Sorocaba; distanciaCapital = 87; populacao = 644919
+
+
+Desafio: Cada cidade terá que ter o seu próprio _id
+
+db.estados.insert({
+    nome:"São Paulo",
+    sigla:"SP",
+    regiao:"Sudeste",
+    cidades:[
+        {_id: ObjectId(),
+        nome: "Campinas",
+        area: 795.7,
+        prefeito: "Fulano",
+        populacao: 1081000
+        },{
+            _id: ObjectId(),
+            nome: "Guarulhos",
+            populacao: 1325000
+        },{
+            _id: ObjectId(),
+            nome: "Sorocaba",
+            distanciaCapital: 87,
+            populacao: 644919
+        }]
+})
