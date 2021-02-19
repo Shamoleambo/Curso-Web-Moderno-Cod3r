@@ -1,11 +1,6 @@
 {
   "products": [
     {
-      "name": "mano",
-      "price": "1234",
-      "id": 4
-    },
-    {
       "name": "dahora",
       "price": "5678765",
       "id": 5
@@ -24,6 +19,21 @@
       "name": "truta",
       "price": "12",
       "id": 8
+    },
+    {
+      "name": "tiu",
+      "price": "1234",
+      "id": 9
+    },
+    {
+      "name": "nao",
+      "price": "200",
+      "id": 10
+    },
+    {
+      "name": "agorasim",
+      "price": "000",
+      "id": 11
     }
   ]
 }
