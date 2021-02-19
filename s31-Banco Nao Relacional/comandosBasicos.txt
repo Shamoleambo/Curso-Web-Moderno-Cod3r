@@ -8,10 +8,16 @@
         =>  Documento: MongoDB;
         =>  Colunas: Bigtable(Google) / Cassandra(Apache);
         =>  Grafo: Neo4j;
+=>  É possível inserir numa collection que não existe dentro de um banco que ainda não foi criado, bastando estar o usando o tal banco(*);
+=>  O comando .save() também pode ser usado para salvar dados, assim como atualiza-los(**);
+=>  db.help() possuí vários métodos que podem ser usados;
 
-Comandos Básicos:
 show dbs
 use --nome-banco
 db.createCollection('exemplo')
 db.exemplo.drop()
 show collections
+(*)db.colecanaoexiste.insert({ ... })
+(**)db.colecao.save({ ... })
+db.colecao.find()
+db.colecao.find().pretty()
