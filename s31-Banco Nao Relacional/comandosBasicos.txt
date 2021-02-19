@@ -1,0 +1,17 @@
+=>  MongoDB é Case Sensitive;
+=>  MongoDB é um banco sem Schema(sem tabelas);
+=>  NoSQL significa Not Only SQL. Ou seja: pode usar SQL ou variações dele na hora de persistir os dados;
+=>  É possível começar a usar um banco sem ele ao menos existir;
+=>  Se todas as coleções do banco forem excluídas o banco é excluído, mesmo que você ainda esteja usando ele;
+=>  Existem 4 tipos de bancos não relacionais:
+        =>  Chave-Valor: Redis;
+        =>  Documento: MongoDB;
+        =>  Colunas: Bigtable(Google) / Cassandra(Apache);
+        =>  Grafo: Neo4j;
+
+Comandos Básicos:
+show dbs
+use --nome-banco
+db.createCollection('exemplo')
+db.exemplo.drop()
+show collections
