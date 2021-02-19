@@ -1,0 +1,57 @@
+db.colecao.findOne()
+    =>  traz apenas o primeiro
+db.colecao.findOne({ prop: "xyz" })
+    =>  filtra pela propriedade passada dentro do objeto setada com um valor, e traz apenas o primeiro
+db.colecao.find({ prop: "xyz" })
+    =>  filtra pela propriedade assim como o de cima, mas traz todos
+
+OR:
+    =>$or
+    =>Objeto contendo o operador + sob quais condições irá operar:
+        {$or: [{...},{...}]}
+
+            db.estados.find({$or: [
+                {sigla: "RJ"},
+                {sigla: "AC"}
+            ]}).pretty()
+
+
+EXISTS:
+    =>$exists
+    =>Objeto que após o attr verifica a existência ou não daquele attr nas colecoes
+        {prop: {$exists: true}}
+
+            db.estados.find({
+                populacao: {$exists: true}
+            }).pretty()
+
+
+Métodos para consultas paginadas: SKIP & LIMIT
+
+SKIP:
+    =>Pula a quantidade de valores passados como parâmetro
+
+            db.estados.find().skip(1).pretty()
+
+LIMIT:
+    =>Limita o número de resultados
+    =>Pode, assim como vários outros métodos, ser associado ao .skip()
+
+            db.estados.find().skip(1).limit(2).pretty()
+
+COUNT:
+    =>Conta quantos há
+
+            db.estados.count()
+
+FILTRO:
+    =>find comum, mas são passados dois parâmetros:
+        =>.find( A , B )
+            =>  A: o parâmetro que será usado como filtro
+            =>  B: quais parâmetros serão projetados (1 => true => será projetado)
+    =>O id é projetado por padrão, se não o quiser, coloque-o com o valor 0(0 => false => não será projetado)
+
+            db.estados.find({sigla: "SP"}, {nome: 1, sigla: 1, _id: 0}).pretty()
+            db.estados.find({sigla: "SP"}, {"cidades.nome": 1, _id: 0}).pretty()
+                =>Acima foi filtrado um objeto(cidades) dentro do objeto estado
+                =>Repare que há aspas ao redor de cidades.nome
