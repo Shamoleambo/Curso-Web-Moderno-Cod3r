@@ -1,0 +1,10 @@
+CONSULTAS AGREGADAS 2:
+
+db.estados.aggregate([
+    {$match: {"cidades.nome": "Sorocaba"}},
+    {$unwind: "$cidades"},
+    {$match: {"cidades.nome": "Sorocaba"}},
+    {$project: {_id: "$cidades._id", manolo: "$cidades.nome"}}
+]).pretty()
+
+    =>$unwind: desfaz um array como valor de uma propriedade e cria o mesmo número de documentos que elementos do array;
