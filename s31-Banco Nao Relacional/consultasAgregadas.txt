@@ -1,0 +1,7 @@
+CONSULTAS AGREGADAS:
+
+.aggregate( [...] )
+    =>  O array passado à essa função possuí os estágios de agragação; cada elemento é um estágio diferente;
+    =>  Estágios $match e $project:
+        =>  $match: responsável por filtrar dentro da coleção o que será selecionado; $match(NoSQL) <=> WHERE(SQL);
+        =>  $project: responsável por filtrar o que será projetado daquilo que foi selecionado; $project(NoSQL) <=> SELECT(SQL);
