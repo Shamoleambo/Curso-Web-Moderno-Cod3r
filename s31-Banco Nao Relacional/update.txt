@@ -1,0 +1,17 @@
+db.estados.update(
+    {sigla: "SP"},
+    {$set: {populacao: 45340000}}
+)
+    =>  O primeiro parâmetro do update é um filtro para selecionar o que será alterado
+    =>  O operador $set modifica ou adiciona uma propriedade
+
+db.estados.update(
+    {sigla: "AL"},
+    {$set: {cidades: [{nome: "Sergipe"}]}}
+)
+
+db.estados.update(
+    {sigla: "SP"},
+    {$push: {cidades: [{nome: "Santos", populacao: "433966"}]}}
+)
+    =>  O operador $push adiciona dados à um array
