@@ -5,3 +5,29 @@ CONSULTAS AGREGADAS:
     =>  Estágios $match e $project:
         =>  $match: responsável por filtrar dentro da coleção o que será selecionado; $match(NoSQL) <=> WHERE(SQL);
         =>  $project: responsável por filtrar o que será projetado daquilo que foi selecionado; $project(NoSQL) <=> SELECT(SQL);
+
+db.estados.aggregate([
+    {$project: {nome: 1, "cidades.nome": 1, _id: 0}}
+])
+
+db.estados.aggregate([
+    {$project: {populacao: {$sum: "$cidades.populacao"}, sigla: 1, _id: 0}}
+])
+    =>  Na consulta acima cidades.populacao tem um $ porque está do lado direito da operação(é um valor, e não uma chave)
+    Como será feita uma operção de soma com esse valor o $ indica para o mongo que esse valor será interpolado
+    =>  $sum é um operador e não um estágio
+
+db.estados.aggregate([
+    {$project: {populacao: {$sum: "$cidades.populacao"}, sigla: 1, _id: 0}},
+    {$group: {_id: null, populacaoTotal: {$sum: "$populacao"}}}
+])
+    =>  É importante ressaltar que o resultado do estágio do $project é o que é passado para o estágio do $group
+    Por isso há uma propriedade populacao sendo manipulada em $group, pois ela foi criada em $project, embora nao exista em todos os objetos da colecao
+    =>  Em $group outra propriedade foi criada: populacaoTotal, que usa o operador $sum para gerar o total de pessoas;
+
+db.estados.aggregate([
+    {$project: {populacao: {$sum: "$cidades.populacao"}, sigla: 1, _id: 0}},
+    {$group: {_id: null, populacaoTotal: {$sum: "$populacao"}}},
+    {$project: {populacaoTotal: 1, _id: 0}}
+])
+    =>  Foi retirado, no último $project, a propriedade _id que o $group adiciona para agregar
