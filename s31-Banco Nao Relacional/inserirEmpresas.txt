@@ -1,0 +1,54 @@
+db.estados.find().pretty()
+db.empresas.find().pretty()
+
+db.empresas.insert({
+    nome: "Bradesco",
+    estadoId: ObjectId("602fb37388bbfe72465f7b20")
+})
+
+db.empresas.insert({
+    nome: "Vale",
+    cidadeId: ObjectId("602fb37388bbfe72465f7b1f")
+})
+
+db.empresas.aggregate([
+    {$match: {nome: "Bradesco"}},
+    {$lookup: {
+        from: "estados",
+        localField: "estadoId",
+        foreignField: "_id",
+        as: "estado"
+    }}
+]).pretty()
+    =>  $lookup é um estágio do aggregate que relaciona dois documentos diferentes
+    localField(paralelo com PK) seleciona o campo do documento atual que tem relação com foreignField(paralelo com FK)
+    from diz de qual coleção sairá o documento que fará relação com este
+    O attr as diz qual será o nome do attr criado a partir do lookup
+
+db.empresas.aggregate([
+    {$match: {nome: "Bradesco"}},
+    {$lookup: {
+        from: "estados",
+        localField: "estadoId",
+        foreignField: "_id",
+        as: "estado"
+    }},
+    {$unwind: "$estado"}
+]).pretty()
+
+db.empresas.aggregate([
+    {$match: {nome: "Vale"}},
+    {$lookup:{
+        from: "estados",
+        localField: "cidadeId",
+        foreignField: "cidades._id",
+        as: "estado"
+    }},
+    {$unwind: "$estado"},
+    {$unwind: "$estado.cidades"},
+    {$addFields: {mesmaCidade: {$cmp: ["$estado.cidades._id", "$cidadeId"]}}},
+    {$match: {mesmaCidade: 0}}
+]).pretty()
+    =>  Foi add um campo($addFields) que guarda o valor se cidadeId e estado.cidade._id são iguais
+    $cmp é o operador que faz essa verificação: 0 se é igual, 1 se é maior e -1 se é menor => $cmp: [ a , b ]
+    Tudo isso foi feito porque o seguinte match não funciona: {$match: {"$estado.cidades._id": "$cidadeId"}}
