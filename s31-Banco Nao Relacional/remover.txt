@@ -1,0 +1,23 @@
+db.estados.remove(
+    {_id:  ObjectId("602fdc2d2bd6aab6e6743947")}
+)
+
+db.estados.remove(
+    {populacao: {$exists: true}},
+    1
+)
+    =>  O número 1 limita o número de exclusões para apenas uma(que será a primeira)
+
+db.estados.remove(
+    {populacao: {$exists: false}}
+)
+
+db.estados.update(
+    {sigla: "RJ"},
+    {$set: {populacao: 16720000}}
+)
+
+db.estados.remove(
+    {populacao: {$lt: 20000000}}
+)
+    =>  Usa o operador $lt(less than) para remover todos que atendem ao critério

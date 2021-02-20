@@ -12,6 +12,11 @@ db.estados.update(
 
 db.estados.update(
     {sigla: "SP"},
-    {$push: {cidades: [{nome: "Santos", populacao: "433966"}]}}
+    {$push: {cidades: {nome: "Santos", populacao: "433966"}}}
 )
     =>  O operador $push adiciona dados à um array
+
+db.estados.find(
+    {populacao: {$exists: true}},
+    {_id: 0, nome: 1}
+).pretty()
