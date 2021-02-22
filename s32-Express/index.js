@@ -1,21 +1,13 @@
 const express = require('express');
 const app = express();
 
-app.get('/opa',(req, res)=>{
-    //res.send('<h1>Oi Mano!</h1><br/><p>...nois</p>');
+app.use((req, res, next)=>{
+    console.log('Antes...');
+    next();
+});
 
-    // res.json({
-    //     name: "caneta",
-    //     price: 12.00,
-    //     discount: 0.10
-    // });
-
-    // res.json([
-    //     {id: 7, nome: 'Ana', posicao: 1},
-    //     {id: 34, nome: 'Bia', posicao: 2},
-    //     {id: 73, nome: 'Carlos', posicao: 3}
-    // ]);
-
+app.get('/opa',(req, res, next)=>{
+    
     res.json({
         data: [
             {id:1, nome: "Mano", idade: 26},
@@ -27,6 +19,13 @@ app.get('/opa',(req, res)=>{
         limit: 3,
         status: 200
     });
+
+    next();
+});
+
+app.use((req, res, next)=>{
+    console.log('...depois.');
+    next();
 });
 
 app.listen(3000, ()=> console.log("Backend executando..."));
