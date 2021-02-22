@@ -6,6 +6,12 @@ const saudacao = require('./saudacaoMid');
 
 const app = express();
 
+require('./api/produto')(app, "com param!");
+
+//É possível desestruturar, pois o módulo retorna as funções caso queira reutiliza-las
+// const {salvar, obter} = require('./api/produto')(app, "com param!");
+// app.post('/manolo', salvar);
+
 app.post('/usuario', usuarioApi.salvar);
 app.get('/usuario', usuarioApi.obter);
 
