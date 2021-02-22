@@ -1,8 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser'); //Envia os dados no corpo da requisição: .body()
+
+const usuarioApi = require('./api/usuario');
+const saudacao = require('./saudacaoMid');
+
 const app = express();
 
-const saudacao = require('./saudacaoMid');
+app.post('/usuario', usuarioApi.salvar);
+app.get('/usuario', usuarioApi.obter);
 
 app.use(bodyParser.text());
 app.use(bodyParser.json());
