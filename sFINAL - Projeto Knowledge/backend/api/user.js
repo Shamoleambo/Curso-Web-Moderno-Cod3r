@@ -7,7 +7,7 @@ module.exports = app =>{
 
     const encryptPassword = password =>{
         //The salt is the seasoning to generate the encrypted password
-        const salt = bcrypt.genSalt(10);
+        const salt = bcrypt.genSaltSync(10);
         return bcrypt.hashSync(password, salt);
     }
 
@@ -44,7 +44,7 @@ module.exports = app =>{
                 .catch(err => res.status(500).send(err));
         } else{
             app.db('users')
-                .insert('users')
+                .insert(user)
                 .then(_ => res.status(204).send())
                 .catch(err => res.status(500).send(err));
         }
