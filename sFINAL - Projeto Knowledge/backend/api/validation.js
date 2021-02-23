@@ -11,13 +11,13 @@ module.exports = app =>{
         }catch(msg){
             return;
         }
-    
+        
         throw msg;
     }
     
     function equalsOrError(valueA, valueB, msg){
         if(valueA !== valueB) throw msg;
     }
-
+    
     return {existsOrError, notExistsOrError, equalsOrError};
 }
