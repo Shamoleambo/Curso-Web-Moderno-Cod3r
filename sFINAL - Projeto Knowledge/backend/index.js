@@ -5,6 +5,7 @@ const db = require('./config/db'); //This is the knex with de db config(knexfile
 app.db = db;
 
 consign()
+    .include('./config/passport.js')
     .then('./config/middlewares.js')
     .then('./api/validation.js') //This one MUST come before the below for .api/user is using the validations
     .then('./api')
