@@ -1,3 +1,5 @@
+const queries = require('./queries');
+
 module.exports = app =>{
     const {existsOrError} = app.api.validation;
 
@@ -35,14 +37,20 @@ module.exports = app =>{
             const rowsDeleted = await app.db('articles')
                 .where({id: req.params.id})
                 .del();
-            existsOrError(rowsDeleted, "Artigo não foi encontrado");
+
+            try{
+                existsOrError(rowsDeleted, "Artigo não foi encontrado");
+            }catch(msg){
+                return res.status(400).send(msg);
+            }
+            
             res.status(204).send();
         }catch(msg){
             res.status(500).send(msg);
         }
     }
 
-    //Limit of pagination
+    //Limit of pagination used for get and getByCategory
     const limit = 10;
 
     const get = async (req, res) =>{
@@ -70,5 +78,23 @@ module.exports = app =>{
             .catch(err => res.status(500).send(err));
     }
 
-    return {save, remove, get, getById}
+    const getByCategory = async (req, res)=>{
+        const categoryId = req.params.id;
+        const page = req.query.page || 1;
+        const categories = await app.db.raw(queries.categoryWithChildren, categoryId);
+        const ids = categories.rows.map(c => c.id);
+
+        //The tables from the db are: a for articles, and u for users
+        app.db({a: 'articles', u: 'users'})
+            .select('a.id', 'a.name', 'a.description', 'a.imageUrl', {author: 'u.name'}) //Author is the column's name referencing the user who wrote the article
+            .limit(limit)
+            .offset(page*limit - limit)
+            .whereRaw('?? = ??', ['u.id', 'a.userId'])
+            .whereIn('categoryId', ids)
+            .orderBy('a.id', 'desc')
+            .then(articles => res.json(articles))
+            .catch(err => res.status(500).send(err));
+    }
+
+    return {save, remove, get, getById, getByCategory}
 }
