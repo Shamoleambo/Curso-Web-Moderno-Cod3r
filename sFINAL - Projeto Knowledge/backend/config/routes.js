@@ -1,4 +1,10 @@
 module.exports = app =>{
+    /* The three URLs below are the only public URLs */
+    app.post('/signup', app.api.user.save);
+    app.post('/signin', app.api.auth.signin);
+    app.post('/validateToken', app.api.auth.validateToken);
+
+
     app.route('/users')
         .get(app.api.user.get)
         .post(app.api.user.save);
@@ -30,6 +36,5 @@ module.exports = app =>{
         .delete(app.api.article.remove);
 
     app.route('/categories/:id/articles')
-        .get(app.api.article.getByCategory)
-
+        .get(app.api.article.getByCategory);
 }
