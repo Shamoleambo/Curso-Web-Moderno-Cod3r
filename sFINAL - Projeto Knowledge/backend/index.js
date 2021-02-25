@@ -13,6 +13,7 @@ consign()
     .then('./config/middlewares.js')
     .then('./api/validation.js') //This one MUST come before the below for .api/user is using the validations
     .then('./api')
+    .then('./schedule')
     .then('./config/routes.js')
     .into(app)
 
