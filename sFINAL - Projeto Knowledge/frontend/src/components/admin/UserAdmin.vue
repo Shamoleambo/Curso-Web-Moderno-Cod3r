@@ -9,6 +9,7 @@
             <b-form-group label="Nome:" label-for="user-name">
                 <b-form-input id="user-name" type="text"
                 v-model="user.name"
+				:readonly="mode === 'remove'"
                 required
                 placeholder="Informe o Nome do Usuário..."
                 />
@@ -19,6 +20,7 @@
             <b-form-group label="E-mail:" label-for="user-email">
                 <b-form-input id="user-email" type="text"
                 v-model="user.email"
+				:readonly="mode === 'remove'"
                 required
                 placeholder="Informe o E-mail do Usuário..."
                 />
@@ -28,12 +30,13 @@
 
 
         <!-- Checkbox for Admin -->
-        <b-form-checkbox id="user-admin" v-model="user.admin" class="mt-3 mb-3">
+        <b-form-checkbox id="user-admin" v-model="user.admin"
+			class="mt-3 mb-3" v-show="mode=='save'" >
             Administrador?
         </b-form-checkbox>
 
         <!--Fields for Password and ConfirmPassword-->
-        <b-row>
+        <b-row v-show="mode === 'save'" >
             <b-col md="6" sm="12">
             <b-form-group label="Senha:" label-for="user-password">
                 <b-form-input id="user-password" type="password"
@@ -58,21 +61,34 @@
         
         <!-- Buttons -->
         <!-- The "Salvar" and "Excluir" buttons rely on the mode attribute to be displayed or not -->
-        <b-button variant="primary" 
-            v-if="mode === 'save'" @click="save">
-            Salvar
-        </b-button>
-        <b-button variant="danger" 
-            v-if="mode === 'remove'" @click="remove">
-            Excluir
-        </b-button>
-        <b-button class="ml-2" @click="reset">
-            Cancelar
-        </b-button>
+		<b-row>
+			<b-col xs="12" >
+				<b-button variant="primary" 
+					v-if="mode === 'save'" @click="save">
+					Salvar
+				</b-button>
+				<b-button variant="danger" 
+					v-if="mode === 'remove'" @click="remove">
+					Excluir
+				</b-button>
+				<b-button class="ml-2" @click="reset">
+					Cancelar
+				</b-button>
+			</b-col>
+		</b-row>
 
     </b-form>
     <hr />
-    <b-table hover striped :items="users" :fields="fields"></b-table>
+    <b-table hover striped :items="users" :fields="fields">
+        <template slot="actions" slot-scope="data">
+            <b-button class="mr-2" variant="warning" @click="loadUser(data.item)">
+              <i class="fa fa-pencil"></i>
+            </b-button>
+            <b-button variant="danger" @click="loadUser(data.item, 'remove')">
+				<i class="fa fa-trash"></i>
+			</b-button>
+        </template>
+    </b-table>
   </div>
 </template>
 
@@ -134,6 +150,10 @@ export default {
                 this.reset(); //Updates the list of users to be rendered
             })
             .catch(showError);
+    },
+    loadUser(user, mode = 'save'){
+      this.mode = mode;
+      this.user = {...user};
     }
   },
   mounted() {
