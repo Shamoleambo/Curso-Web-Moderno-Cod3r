@@ -2,7 +2,7 @@
 	<div id="app" :class="{'hide-menu': !isMenuVisible}" > <!-- The class .hide-menu will only be applied when the isMenuVisible is false -->
 		<Header title="Cod3r - Base de Conhecimento" 
 			:hideToggle="false" 
-			:hideUserDropdown="true"
+			:hideUserDropdown="false"
 			/>
 		<Menu />
 		<Content/>

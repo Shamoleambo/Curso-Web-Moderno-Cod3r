@@ -5,10 +5,12 @@ import App from './App';
 
 import './config/bootstrap'; //There is no need to pass the bootstrap to the Vue instance, all you got to do is to load it
 import store from './config/store';
+import router from './config/router';
 
 Vue.config.productionTip = false
 
 new Vue({
   store,
+  router,
   render: h => h(App)
 }).$mount('#app')
