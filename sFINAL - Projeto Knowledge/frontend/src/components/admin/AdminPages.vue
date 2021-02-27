@@ -4,7 +4,7 @@
             sub="Cadastro & Cia" />
         <div class="admin-pages-tabs">
             <b-card no-body>
-                <b-tabs cards>
+                <b-tabs card>
                     <b-tab title="Artigos" active>
                         <ArticleAdmin />
                     </b-tab>
