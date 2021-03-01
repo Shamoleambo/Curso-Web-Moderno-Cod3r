@@ -99,7 +99,7 @@ import axios from "axios";
 
 export default {
   name: "UserAdmin",
-  data: function () {
+  data: function() {
     //The data attribute is a function that returns an object
     return {
       mode: "save",
@@ -122,38 +122,39 @@ export default {
   methods: {
     loadUsers() {
       const url = `${baseApiUrl}/users`;
-      axios.get(url).then(res => this.users = res.data);
+      axios.get(url).then((res) => (this.users = res.data));
     },
-    reset(){
-        this.mode = 'save';
-        this.user = {};
-        this.loadUsers();
+    reset() {
+      this.mode = "save";
+      this.user = {};
+      this.loadUsers();
     },
-    save(){
-        const method = this.user.id ? 'put' : 'post';
-        const id = this.user.id ? `/${this.user.id}` : '';
+    save() {
+      const method = this.user.id ? "put" : "post";
+      const id = this.user.id ? `/${this.user.id}` : "";
 
-        //The axios' request is being made with the variable method set above:
-        axios[method](`${baseApiUrl}/users${id}`, this.user)
-            .then(() => {
-                this.$toasted.global.defaultSuccess();
-                this.reset(); //Updates the list of users to be rendered
-            })
-            .catch(showError);
+      //The axios' request is being made with the variable method set above:
+      axios[method](`${baseApiUrl}/users${id}`, this.user)
+        .then(() => {
+          this.$toasted.global.defaultSuccess();
+          this.reset(); //Updates the list of users to be rendered
+        })
+        .catch(showError);
     },
-    remove(){
-        const id = this.user.id;
+    remove() {
+      const id = this.user.id;
 
-        axios.delete(`${baseApiUrl}/users/${id}`)
-            .then(() => {
-                this.$toasted.global.defaultSuccess();
-                this.reset(); //Updates the list of users to be rendered
-            })
-            .catch(showError);
+      axios
+        .delete(`${baseApiUrl}/users/${id}`)
+        .then(() => {
+          this.$toasted.global.defaultSuccess();
+          this.reset(); //Updates the list of users to be rendered
+        })
+        .catch(showError);
     },
-    loadUser(user, mode = 'save'){
+    loadUser(user, mode = "save") {
       this.mode = mode;
-      this.user = {...user};
+      this.user = { ...user };
     }
   },
   mounted() {

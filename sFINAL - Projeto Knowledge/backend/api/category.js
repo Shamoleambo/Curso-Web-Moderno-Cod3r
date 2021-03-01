@@ -3,7 +3,11 @@ module.exports = app => {
 
     //Method for both saving and updating
     const save = (req, res) => {
-        const category = {...req.body}; //Cloning the object passed in the body of the request
+        const category = {
+            id: req.body.id,
+            name: req.body.name,
+            parentId: req.body.parentId
+        };
         if(req.params.id) category.id = req.params.id;
 
         try{
@@ -29,6 +33,7 @@ module.exports = app => {
     //If the category you are trying to remove is associated with another category you can not remove it. You'll have to detatch them first
     const remove = async (req, res) =>{
         try{
+
             existsOrError(req.params.id, "Código da Categoria não informado");
 
             const subcategory = await app.db('categories').where({parentId: req.params.id});
@@ -37,7 +42,7 @@ module.exports = app => {
             const artiles = await app.db('articles').where({categoryId: req.params.id});
             notExistsOrError(artiles, "Categoria possui artigos");
 
-            const rowsDeleted = await app.db('categories').where({id: params.id}).del();
+            const rowsDeleted = await app.db('categories').where({id: req.params.id}).del();
             existsOrError(rowsDeleted, "Categoria não foi encontrada");
 
             res.status(204).send();
