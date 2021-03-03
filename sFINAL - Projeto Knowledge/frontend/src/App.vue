@@ -1,10 +1,10 @@
 <template>
-	<div id="app" :class="{'hide-menu': !isMenuVisible}" > <!-- The class .hide-menu will only be applied when the isMenuVisible is false -->
+	<div id="app" :class="{'hide-menu': !isMenuVisible || !user}" > <!-- The class .hide-menu will only be applied when the isMenuVisible is false -->
 		<Header title="Cod3r - Base de Conhecimento" 
-			:hideToggle="false" 
-			:hideUserDropdown="false"
+			:hideToggle="!user" 
+			:hideUserDropdown="!user"
 			/>
-		<Menu />
+		<Menu v-if="user" />
 		<Content/>
 		<Footer/>
 	</div>
@@ -23,7 +23,7 @@ import { mapState } from 'vuex';
 export default {
 	name: "App",
 	components: {Header, Menu, Content, Footer},
-	computed: mapState(['isMenuVisible'])
+	computed: mapState(['isMenuVisible', 'user'])
 }
 </script>
 
