@@ -51,7 +51,7 @@ module.exports = app =>{
     }
 
     //Limit of pagination used for get and getByCategory
-    const limit = 10;
+    const limit = 3;
 
     const get = async (req, res) =>{
         const page = req.query.page || 1;
